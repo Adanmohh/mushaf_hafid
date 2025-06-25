@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no"
+  name="viewport"
+  />
+<title>
+  Quranic Universal Library
+</title>
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="3NbbGtYSNPYKkGrDWF/tD6F8dYFwsOtGAFVG2oBfUCM8xR5DfEnbQWrn3V5scNz/uBmvN7WoKHwrqTiK1wY+Fg==" />
+<script src="https://js.sentry-cdn.com/9c9baca096bbb40bba9c1e944694d76c.min.js" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta property="og:image" content="https://static-cdn.tarteel.ai/qul/og.jpeg">
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Quranic Universal Library (QUL) logo alongside green abstract shapes on a black background. Text reads: 'The Toolkit for Muslim Developers – A comprehensive collection of Quranic digital resources.'" />
+
+<link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="QUL" />
+<link rel="manifest" href="/site.webmanifest" />
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sarina&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<link rel="stylesheet" href="/assets/bootstrap-b6607915a91d6f7934f434ea5a05e21947f77ca0ba3c6e53fafbd5042b1856cf.css" data-turbo-track="reload" media="screen" />
+
+<script>
+  Sentry.onLoad(function() {
+    Sentry.init({
+      sampleRate: 0.5,
+      environment: "production"
+    });
+  });
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57749XV2P9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-57749XV2P9');
+
+  // Trigger pageview on initial page load
+  document.addEventListener('turbo:load', function(event) {
+    gtag('event', 'page_view', {
+      page_path: window.location.pathname,
+      page_title: document.title
+    });
+  });
+
+  // Handle frame-specific visits if using turbo-frames
+  document.addEventListener('turbo:frame-load', function(event) {
+    gtag('event', 'page_view', {
+      page_path: window.location.pathname,
+      page_title: document.title
+    });
+  });
+</script>
+
+    <link rel="stylesheet" href="/assets/tailwind-d98705a60011b67927e5dd82411a02d14051602f54fbf0bf16050dfa2488938c.css" data-turbo-track="reload" media="screen" />
+<link rel="stylesheet" href="/assets/inter-font-68359c17b7bb8d50b8b424e7aff6aea1f35f62fcb002d251fbd504def63afb99.css" data-turbo-track="reload" media="screen" />
+    <link rel="stylesheet" href="/assets/application-65c7e35bbfb7c838bd86d1aaef12bcdc4f6a5104ee9081da097a373f04801d1d.css" data-turbo-track="reload" media="screen" />
+    <link rel="stylesheet" href="/assets/tinymce_custom-b97900bfe06f8c1f2214ddd1c93afe4108e5d0c2ac730c5ba0180b5f93721e4e.css" data-turbo-track="reload" id="tinymce_custom_style" media="screen" />
+    <script src="/assets/application-e58552efebbd5c00ac4afb60139c816fa2d12beff54ac2f264682d320a9281a3.js" data-turbo-track="reload" defer="defer"></script>
+  </head>
+
+  <body class="tw-font-inter" data-controller="event-tracker">
+    <div id="flash-messages">
+  <div class="d-none"
+       data-controller="flash-message"
+       data-flash-error=""
+       data-flash-notice="">
+  </div>
+</div>
+
+    <div class="tw-relative tw-px-4 md:tw-px-8 lg:tw-px-0 tw-grid tw-grid-cols-1 md:tw-grid-cols-12 tw-justify-center tw-max-w-[1680px] tw-mx-auto">
+  <div class="tw-col-span-12 lg:tw-col-start-2 lg:tw-col-span-10">
+    
+  <div class="tw-relative">
+    <header class="tw-absolute tw-start-0 tw-z-20 tw-flex tw-justify-between tw-items-center tw-w-full tw-py-2 md:tw-py-3 lg:tw-py-4">
+      <div class="qul-logo">
+        <a class="tw-text-black" href="/">
+          <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_2_682)">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0199 11.1875L14.996 14.7033V14.6987C14.8601 15.1587 14.2077 15.3408 13.8544 15.0175L11.1588 12.5355C11.0863 12.4672 11.0319 12.3852 11.0093 12.2896L9.76344 7.56708C9.52334 6.66538 10.1757 5.69992 11.2222 5.40846L12.382 5.08512C13.4421 4.78911 14.5067 5.29006 14.7514 6.20086L16.0199 10.9097C16.047 11.0008 16.047 11.0965 16.0199 11.1875ZM11.8481 16.2015L10.8197 12.6903C10.7925 12.5993 10.7427 12.5173 10.6747 12.4535L7.0731 9.18373C6.37543 8.55072 5.21113 8.70556 4.48174 9.52984L3.67987 10.4315C2.95501 11.2467 2.92783 12.4125 3.61191 13.041L7.19995 16.3381C7.27244 16.4019 7.35852 16.4474 7.45818 16.4656L11.0598 17.0895C11.531 17.1715 11.9795 16.6615 11.8481 16.2015ZM7.245 16.7799L9.99945 19.1753L10.004 19.1708C10.3619 19.485 10.2577 20.159 9.81824 20.3457L6.45219 21.7757C6.36158 21.8121 6.26191 21.8303 6.16677 21.8121L1.37366 20.9878C0.458526 20.8284 -0.139481 19.8356 0.0281425 18.7563L0.213887 17.5632C0.38604 16.4748 1.27852 15.7097 2.20724 15.8645L6.99583 16.6615C7.08643 16.6751 7.17251 16.7161 7.245 16.7799ZM10.0484 22.6773L6.44228 22.1582C6.34715 22.1445 6.25201 22.1582 6.16593 22.1946L1.70806 24.1301C0.842764 24.5035 0.502988 25.6329 0.946963 26.6439L1.43171 27.7505C1.87116 28.7479 2.90861 29.2625 3.76484 28.8936L8.24083 26.9809C8.33144 26.9445 8.40393 26.8807 8.46282 26.7987L10.5241 23.7657C10.7914 23.3695 10.5241 22.7456 10.0484 22.6773ZM11.9753 25.601L8.66365 27.1221C8.57758 27.1631 8.50509 27.2223 8.45073 27.2997L5.74157 31.3482C5.21605 32.1315 5.53318 33.27 6.45284 33.8803L7.45858 34.5497C8.36465 35.1509 9.51536 35.0188 10.0364 34.2446L12.7727 30.2052C12.827 30.1232 12.8588 30.0321 12.8588 29.9319L12.963 26.2568C12.9765 25.7787 12.4103 25.4007 11.9753 25.601ZM18.4541 15.1541L21.2041 12.7542C21.2766 12.6904 21.3309 12.613 21.3581 12.5219L22.8214 7.87223C23.1068 6.97053 22.4816 5.97319 21.4306 5.6453L20.2799 5.29009C19.2424 4.96675 18.1778 5.42216 17.8924 6.31475L16.3974 10.9644C16.3657 11.0555 16.3657 11.1557 16.3928 11.2513L17.3216 14.8035C17.4439 15.268 18.0917 15.4684 18.4496 15.1541H18.4541ZM24.7236 16.8891L21.1174 17.4129V17.4083C20.6463 17.4766 20.2068 16.9529 20.3563 16.4975L21.4844 13.0045C21.5116 12.9135 21.5705 12.8269 21.643 12.7677L25.4031 9.66643C26.1235 9.07441 27.2651 9.27023 27.9628 10.1036L28.7375 11.0281C29.4442 11.8706 29.4352 13.0501 28.7103 13.6558L24.9773 16.7753C24.9048 16.839 24.8187 16.8755 24.7236 16.8891ZM22.1444 20.7601L25.4561 22.2811C25.5422 22.3221 25.6373 22.3358 25.7279 22.3267L30.5437 21.7346C31.4769 21.6208 32.1202 20.6326 31.9798 19.5396L31.8258 18.3373C31.6853 17.2535 30.8291 16.4702 29.9094 16.5795L25.0801 17.1442C24.9849 17.1533 24.8943 17.1943 24.8173 17.258L21.9904 19.5851C21.6189 19.8903 21.7095 20.5643 22.1444 20.7646V20.7601ZM23.1797 27.2132L21.209 24.1347H21.2136C20.9553 23.7294 21.2453 23.1146 21.721 23.0599L25.3543 22.641C25.4494 22.6273 25.5491 22.6455 25.6352 22.6865L30.0025 24.836C30.836 25.2459 31.135 26.3707 30.6684 27.3589L30.152 28.4519C29.6808 29.4492 28.6071 29.9274 27.7599 29.5175L23.3881 27.3999C23.3021 27.3589 23.2341 27.2952 23.1797 27.2132ZM18.6069 26.4663V30.1278C18.6069 30.2234 18.6341 30.319 18.6839 30.3965L21.2209 34.5543C21.7148 35.3604 22.8745 35.5425 23.8032 34.955L24.8271 34.3129C25.7468 33.7346 26.1047 32.6279 25.6244 31.8264L23.1056 27.6458C23.0557 27.5638 22.9832 27.4955 22.8926 27.4545L19.6127 25.8333C19.1823 25.6238 18.6069 25.9836 18.6069 26.4618V26.4663ZM13.1976 30.0959L15.1638 27.0128H15.1683C15.4266 26.6121 16.1061 26.6212 16.3507 27.031L18.2399 30.1779C18.2943 30.2644 18.3169 30.36 18.3169 30.4557L18.1855 35.3422C18.1584 36.2757 17.2659 37.0135 16.1786 36.9998L14.9735 36.9816C13.8772 36.9634 12.9983 36.1847 13.0164 35.2374L13.1161 30.36C13.1161 30.269 13.1433 30.1779 13.1976 30.0959Z" fill="black"/>
+            </g>
+            <defs>
+              <clipPath id="clip0_2_682">
+                <rect width="32" height="40" fill="white"/>
+              </clipPath>
+            </defs>
+          </svg>
+</a>      </div>
+
+      <div class="tw-flex tw-gap-2 md:tw-gap-4 tw-items-center">
+        <a class="tw-text-black tw-hidden md:tw-flex" href="/resources">Resources</a>
+        <a class="tw-text-black tw-hidden md:tw-flex" href="/tools">Tools</a>
+        <a target="_blank" class="tw-text-black tw-hidden md:tw-flex" href="https://discord.gg/HAcGh8mfmj">Community</a>
+        <a class="tw-text-black tw-hidden md:tw-flex" href="/faq">FAQ</a>
+        <a class="tw-text-black tw-hidden md:tw-flex tw-items-center" target="_blank" href="https://github.com/TarteelAI/quranic-universal-library">
+          <span class="me-2">Github</span>
+          <svg
+          viewBox="0 0 16 16"
+          width="16"
+          height="16"
+          class="octicon octicon-mark-github"
+          aria-hidden="true"
+        >
+            <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+          </svg>
+</a>
+        
+        <a class="tw-inline-block tw-px-4 tw-py-1 md:tw-px-6 md:tw-py-2 tw-text-black tw-border tw-border-black tw-rounded-full hover:tw-bg-black hover:tw-text-white tw-transition-colors tw-duration-300" data-event="clicked-admin" data-event-category="navigation" data-event-value="1" href="/cms">CMS</a>
+
+        <a class="tw-inline-block md:tw-hidden" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+          <svg class="tw-fill-white" width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="36" height="36" rx="18" stroke="#404040"/>
+            <path d="M9 25.25H28.375V23.0971H9V25.25ZM9 19.8679H28.375V17.7155H9V19.8679ZM9 12.3334V14.4863H28.375V12.3334H9Z" fill="black"/>
+          </svg>
+        </a>
+        <div class="offcanvas offcanvas-end tw-z-[9999]"  tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+          <div class="offcanvas-header">
+            <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_2_682)">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0199 11.1875L14.996 14.7033V14.6987C14.8601 15.1587 14.2077 15.3408 13.8544 15.0175L11.1588 12.5355C11.0863 12.4672 11.0319 12.3852 11.0093 12.2896L9.76344 7.56708C9.52334 6.66538 10.1757 5.69992 11.2222 5.40846L12.382 5.08512C13.4421 4.78911 14.5067 5.29006 14.7514 6.20086L16.0199 10.9097C16.047 11.0008 16.047 11.0965 16.0199 11.1875ZM11.8481 16.2015L10.8197 12.6903C10.7925 12.5993 10.7427 12.5173 10.6747 12.4535L7.0731 9.18373C6.37543 8.55072 5.21113 8.70556 4.48174 9.52984L3.67987 10.4315C2.95501 11.2467 2.92783 12.4125 3.61191 13.041L7.19995 16.3381C7.27244 16.4019 7.35852 16.4474 7.45818 16.4656L11.0598 17.0895C11.531 17.1715 11.9795 16.6615 11.8481 16.2015ZM7.245 16.7799L9.99945 19.1753L10.004 19.1708C10.3619 19.485 10.2577 20.159 9.81824 20.3457L6.45219 21.7757C6.36158 21.8121 6.26191 21.8303 6.16677 21.8121L1.37366 20.9878C0.458526 20.8284 -0.139481 19.8356 0.0281425 18.7563L0.213887 17.5632C0.38604 16.4748 1.27852 15.7097 2.20724 15.8645L6.99583 16.6615C7.08643 16.6751 7.17251 16.7161 7.245 16.7799ZM10.0484 22.6773L6.44228 22.1582C6.34715 22.1445 6.25201 22.1582 6.16593 22.1946L1.70806 24.1301C0.842764 24.5035 0.502988 25.6329 0.946963 26.6439L1.43171 27.7505C1.87116 28.7479 2.90861 29.2625 3.76484 28.8936L8.24083 26.9809C8.33144 26.9445 8.40393 26.8807 8.46282 26.7987L10.5241 23.7657C10.7914 23.3695 10.5241 22.7456 10.0484 22.6773ZM11.9753 25.601L8.66365 27.1221C8.57758 27.1631 8.50509 27.2223 8.45073 27.2997L5.74157 31.3482C5.21605 32.1315 5.53318 33.27 6.45284 33.8803L7.45858 34.5497C8.36465 35.1509 9.51536 35.0188 10.0364 34.2446L12.7727 30.2052C12.827 30.1232 12.8588 30.0321 12.8588 29.9319L12.963 26.2568C12.9765 25.7787 12.4103 25.4007 11.9753 25.601ZM18.4541 15.1541L21.2041 12.7542C21.2766 12.6904 21.3309 12.613 21.3581 12.5219L22.8214 7.87223C23.1068 6.97053 22.4816 5.97319 21.4306 5.6453L20.2799 5.29009C19.2424 4.96675 18.1778 5.42216 17.8924 6.31475L16.3974 10.9644C16.3657 11.0555 16.3657 11.1557 16.3928 11.2513L17.3216 14.8035C17.4439 15.268 18.0917 15.4684 18.4496 15.1541H18.4541ZM24.7236 16.8891L21.1174 17.4129V17.4083C20.6463 17.4766 20.2068 16.9529 20.3563 16.4975L21.4844 13.0045C21.5116 12.9135 21.5705 12.8269 21.643 12.7677L25.4031 9.66643C26.1235 9.07441 27.2651 9.27023 27.9628 10.1036L28.7375 11.0281C29.4442 11.8706 29.4352 13.0501 28.7103 13.6558L24.9773 16.7753C24.9048 16.839 24.8187 16.8755 24.7236 16.8891ZM22.1444 20.7601L25.4561 22.2811C25.5422 22.3221 25.6373 22.3358 25.7279 22.3267L30.5437 21.7346C31.4769 21.6208 32.1202 20.6326 31.9798 19.5396L31.8258 18.3373C31.6853 17.2535 30.8291 16.4702 29.9094 16.5795L25.0801 17.1442C24.9849 17.1533 24.8943 17.1943 24.8173 17.258L21.9904 19.5851C21.6189 19.8903 21.7095 20.5643 22.1444 20.7646V20.7601ZM23.1797 27.2132L21.209 24.1347H21.2136C20.9553 23.7294 21.2453 23.1146 21.721 23.0599L25.3543 22.641C25.4494 22.6273 25.5491 22.6455 25.6352 22.6865L30.0025 24.836C30.836 25.2459 31.135 26.3707 30.6684 27.3589L30.152 28.4519C29.6808 29.4492 28.6071 29.9274 27.7599 29.5175L23.3881 27.3999C23.3021 27.3589 23.2341 27.2952 23.1797 27.2132ZM18.6069 26.4663V30.1278C18.6069 30.2234 18.6341 30.319 18.6839 30.3965L21.2209 34.5543C21.7148 35.3604 22.8745 35.5425 23.8032 34.955L24.8271 34.3129C25.7468 33.7346 26.1047 32.6279 25.6244 31.8264L23.1056 27.6458C23.0557 27.5638 22.9832 27.4955 22.8926 27.4545L19.6127 25.8333C19.1823 25.6238 18.6069 25.9836 18.6069 26.4618V26.4663ZM13.1976 30.0959L15.1638 27.0128H15.1683C15.4266 26.6121 16.1061 26.6212 16.3507 27.031L18.2399 30.1779C18.2943 30.2644 18.3169 30.36 18.3169 30.4557L18.1855 35.3422C18.1584 36.2757 17.2659 37.0135 16.1786 36.9998L14.9735 36.9816C13.8772 36.9634 12.9983 36.1847 13.0164 35.2374L13.1161 30.36C13.1161 30.269 13.1433 30.1779 13.1976 30.0959Z" fill="black"></path>
+              </g>
+              <defs>
+                <clipPath id="clip0_2_682">
+                  <rect width="32" height="40" fill="white"></rect>
+                </clipPath>
+              </defs>
+            </svg>
+            <h1 class="offcanvas-title" id="offcanvasRightLabel">QUL</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <div class="tw-flex tw-flex-col tw-gap-3 tw-font-bold tw-mt-4">
+              <a class="tw-text-black tw-text-lg" href="/resources">Resources</a>
+              <a class="tw-text-black tw-text-lg" href="/tools">Tools</a>
+              <a class="tw-text-black tw-text-lg]" href="/contributors">Contributors</a>
+              <a class="tw-text-black tw-text-lg]" href="/credits">Credits</a>
+              <a target="_blank" class="tw-text-black tw-text-lg" href="https://discord.gg/HAcGh8mfmj">Community</a>
+
+              <a class="tw-text-black tw-text-lg" href="/faq">FAQ</a>
+              <a class="tw-text-black tw-text-lg tw-flex tw-items-center" target="_blank" href="https://github.com/TarteelAI/quranic-universal-library">
+                <span class="me-2">Github</span>
+                <svg
+                viewBox="0 0 16 16"
+                width="16"
+                height="16"
+                class="octicon octicon-mark-github"
+                aria-hidden="true"
+              >
+                  <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+                </svg>
+</a>            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  </div>
+</div>
+    
+<div class="quiz-container overflow-auto py-4">
+  <div class="container-lg d-flex justify-content-center">
+    <div class="box">
+      <div>
+        <h3 class="text-danger">Sorry, the page you are looking for does not exist.</h3>
+        Let's turn this detour into a chance to learn more about the Quran!
+      </div>
+
+      
+<h2 class="heading my-3">
+  Click or drag and drop the missing words to compete the ayah.
+</h2>
+
+<div class="quiz" data-controller="activities--fill-in-blank" data-ayah="2:169">
+  <div class="qpc-hafs  alert alert-info mb-3 d-flex flex-wrap">
+        <span class="word-box qpc-hafs">
+          إِنَّمَا
+        </span>
+        <span class="word-box qpc-hafs">
+          يَأۡمُرُكُم
+        </span>
+        <span class="word-box qpc-hafs">
+          بِٱلسُّوٓءِ
+        </span>
+        <span class="blank-box"
+              data-word-id="82755">
+        </span>
+        <span class="word-box qpc-hafs">
+          وَأَن
+        </span>
+        <span class="blank-box"
+              data-word-id="82757">
+        </span>
+        <span class="blank-box"
+              data-word-id="82758">
+        </span>
+        <span class="word-box qpc-hafs">
+          ٱللَّهِ
+        </span>
+        <span class="blank-box"
+              data-word-id="82760">
+        </span>
+        <span class="word-box qpc-hafs">
+          لَا
+        </span>
+        <span class="word-box qpc-hafs">
+          تَعۡلَمُونَ
+        </span>
+  </div>
+
+  <div class="options gap-2 mb-3" id="options">
+      <div class="draggable-word qpc-hafs"
+           data-word-id="82755">
+        وَٱلۡفَحۡشَآءِ
+      </div>
+      <div class="draggable-word qpc-hafs"
+           data-word-id="82757">
+        تَقُولُواْ
+      </div>
+      <div class="draggable-word qpc-hafs"
+           data-word-id="82760">
+        مَا
+      </div>
+      <div class="draggable-word qpc-hafs"
+           data-word-id="82758">
+        عَلَى
+      </div>
+  </div>
+</div>
+
+      <div class="result my-5" id="quiz-result">
+        <div class="text-danger d-none" id="incorrect-message">
+          Incorrect answer. Try again! You can also use Tarteel app to test your memorization. Download
+          <a class='text-danger' href="https://tarteel.go.link/?adj_t=1foxrfdy&amp;adj_engagement_type=fallback_click&amp;adj_fallback=https%3A%2F%2Fwww.tarteel.ai&amp;adj_redirect_macos=https%3A%2F%2Fwww.tarteel.ai" target="_blank">
+            Tatreel app here
+          </a> to test and improve your memorization.
+        </div>
+
+        <div class="d-none text-success" id="correct-message">
+          Correct! MashaAllah, you got it right. Download
+          <a href="https://tarteel.go.link/?adj_t=1foxrfdy&amp;adj_engagement_type=fallback_click&amp;adj_fallback=https%3A%2F%2Fwww.tarteel.ai&amp;adj_redirect_macos=https%3A%2F%2Fwww.tarteel.ai" target="_blank">Tarteel app</a> to
+          memorize more.
+        </div>
+      </div>
+
+      <div class="more-activities d-flex justify-content-center gap-2 mt-4 d-none">
+        <a class="btn btn-outline-success me-3 ayah-info" data-controller="ajax-modal" data-url="/ayah/1:1" data-css-class="modal-lg" data-use-turbo="true" href="#_">Learn more about this ayah</a>
+        <a class="btn btn-outline-dark me-3" href="/learning_activities/complete_the_ayah">Try another</a>
+        <a class="btn btn-outline-dark" href="/learning_activities">More learning activities</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer class="tw-border-t">
+  <div class="tw-relative tw-px-4 md:tw-px-8 lg:tw-px-0 tw-grid tw-grid-cols-1 md:tw-grid-cols-12 tw-justify-center tw-max-w-[1680px] tw-mx-auto">
+  <div class="tw-col-span-12 lg:tw-col-start-2 lg:tw-col-span-10">
+    
+    <div class="w-full tw-items-center tw-py-5 md:tw-py-8 md:tw-justify-between tw-flex tw-flex-col md:tw-flex-row tw-gap-3">
+      <div class="tw-flex tw-flex-col tw-gap-3 tw-justify-between">
+        <div class="tw-flex tw-gap-3 tw-items-center">
+          <div class="qul-tag">
+            <span>Quranic</span>
+            <span>Universal</span>
+            <span>Library</span>
+          </div>
+          <div class="tw-w-px tw-h-[30px] tw-bg-gray-400"></div>
+          <div class="qul-tag">
+            <svg width="39" height="32" viewBox="0 0 39 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.35" fill-rule="evenodd" clip-rule="evenodd" d="M30.9746 3.58175L29.4942 2.1367C29.3353 1.98164 29.3316 1.72737 29.4859 1.56776L30.8823 0.123023C31.0382 -0.0382324 31.2957 -0.0413724 31.4554 0.116033L32.9358 1.57465C33.0939 1.73045 33.0964 1.98474 32.9414 2.14362L31.545 3.57479C31.3894 3.73426 31.134 3.73737 30.9746 3.58175ZM34.7748 3.58033L33.2944 2.1353C33.1361 1.98079 33.1318 1.72763 33.2847 1.56782L34.6645 0.125922C34.8201 -0.0366866 35.0786 -0.0404899 35.2389 0.117472L36.7193 1.57607C36.8768 1.73131 36.88 1.98449 36.7263 2.14358L35.3466 3.57192C35.1913 3.73273 34.9348 3.73651 34.7748 3.58033ZM31.8262 4.67011H33.5014C36.9549 4.67011 38.7202 6.28344 38.7202 9.41976C38.7202 12.5561 36.9549 14.1694 33.5014 14.1694H31.8262C31.0679 14.1694 30.391 14.0916 29.7963 13.937H13.2443C12.6957 15.5523 11.2991 16.3571 9.07693 16.3571H4.4328C1.49478 16.3571 0 14.9503 0 12.1237V9.5101H2.19063V12.1237C2.19063 13.7112 3.1442 14.4598 4.94824 14.4727H8.56149C10.2569 14.4727 11.2012 13.8115 11.3088 12.4035V4.90236H13.4994V7.0901H13.5097V12.0526H27.1972C26.8049 11.3477 26.6074 10.469 26.6074 9.41976C26.6074 6.28344 28.3728 4.67011 31.8262 4.67011ZM32.2128 12.2979H33.1148C35.2926 12.285 36.4394 11.317 36.4394 9.41976C36.4394 7.50958 35.2926 6.54158 33.1148 6.54158H32.2128C30.0351 6.54158 28.8882 7.50958 28.8882 9.41976C28.8882 11.317 30.0351 12.285 32.2128 12.2979Z" fill="black"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M6.94679 29.8564H5.25879C1.7789 29.8564 0 28.2301 0 25.1196C0 21.9704 1.7789 20.3571 5.25879 20.3571H6.94679C10.4267 20.3571 12.2056 21.9704 12.2056 25.1196C12.2056 27.1718 11.3746 28.6044 9.8164 29.3272L10.9331 31.16H8.47898L7.63498 29.8306C7.41424 29.8435 7.18052 29.8564 6.94679 29.8564ZM5.64833 27.9849H6.45338L5.28476 26.1522H7.92064L8.66077 27.3654L8.72569 27.4816C9.51775 27.0427 9.90729 26.2296 9.90729 25.1196C9.90729 23.1966 8.75166 22.2286 6.55725 22.2286H5.64833C3.45392 22.2286 2.29828 23.1966 2.29828 25.1196C2.29828 27.004 3.45392 27.972 5.64833 27.9849ZM27.6246 21.125V26.2103C27.6246 28.8819 25.9107 30.392 23.1579 30.392H18.2952C15.4905 30.392 13.8284 28.8819 13.8284 26.2103V21.125H16.1008V26.1586C16.1008 27.7849 16.776 28.4173 18.8795 28.4173H22.5866C24.6252 28.4173 25.3653 27.7849 25.3653 26.1586V21.125H27.6246ZM29.2155 21.1637V30.1984H38.7203V28.3269H31.4229V21.1637H29.2155Z" fill="black"/>
+            </svg>
+          </div>
+        </div>
+        <div class="md:tw-hidden">
+          <a
+          class="tw-text-gray-900 hover:tw-underline github-button"
+          href="https://github.com/TarteelAI/quranic-universal-library"
+          data-color-scheme="no-preference: light; light: light; dark: dark;"
+          data-size="large"
+          data-show-count="true"
+          target="_blank"
+          aria-label="Star QUL on Github"
+          title="Star QUL on Github"
+        >Star us</a>
+        </div>
+      </div>
+      <div class="tw-flex tw-gap-5 tw-justify-start md:tw-justify-end">
+        <a class="tw-text-gray-900 hover:tw-underline tw-w-[max-content]" href="/faq">FAQ</a>
+        <a class="tw-text-gray-900 hover:tw-underline tw-w-[max-content]" href="/credits">Credits</a>
+        <a class="tw-text-gray-900 hover:tw-underline tw-w-[max-content]" href="/contributors">Contributors</a>
+        <a class="tw-text-gray-900 hover:tw-underline tw-w-[max-content]" target="_blank" href="https://www.tarteel.ai/terms">Terms of use</a>
+        <a class="tw-text-gray-900 hover:tw-underline tw-w-[max-content]" target="_blank" href="https://www.tarteel.ai/privacy">Privacy Policy</a>
+        <div class="tw-hidden md:tw-block">
+          <a
+          class="tw-text-gray-900 hover:tw-underline github-button"
+          href="https://github.com/TarteelAI/quranic-universal-library"
+          data-color-scheme="no-preference: light; light: light; dark: dark;"
+          data-size="large"
+          data-show-count="true"
+          target="_blank"
+          aria-label="Star QUL on Github"
+          title="Star QUL on Github"
+        >Star us</a>
+        </div>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+      </div>
+    </div>
+
+  </div>
+</div></footer>
+  </body>
+</html>

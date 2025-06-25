@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(python:*)",
+      "Bash(pip3 install:*)",
+      "WebFetch(domain:qul.tarteel.ai)",
+      "Bash(wget:*)",
+      "Bash(curl:*)"
+    ],
+    "deny": []
+  }
+}

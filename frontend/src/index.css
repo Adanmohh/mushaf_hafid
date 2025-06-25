@@ -1,0 +1,484 @@
+/* Traditional Mushaf Styling */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Amiri Quran', 'Scheherazade New', 'Noto Naskh Arabic', serif;
+  background: #ffffff;
+  min-height: 100vh;
+  direction: rtl;
+  color: #000000;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main Container - QUL Style */
+.mushaf-container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  direction: rtl;
+  background: #ffffff;
+}
+
+/* QUL Style Header */
+.mushaf-header {
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+  direction: rtl;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.mushaf-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 8px;
+  font-family: 'Noto Naskh Arabic', serif;
+  direction: rtl;
+}
+
+.mushaf-subtitle {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-family: 'Noto Naskh Arabic', serif;
+  direction: rtl;
+}
+
+/* QUL Style Controls */
+.controls {
+  background: #ffffff;
+  border-bottom: 1px solid #e9ecef;
+  padding: 15px 20px;
+  margin: 0;
+  direction: ltr;
+  text-align: left;
+}
+
+.controls-content {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-family: 'Inter', sans-serif;
+  direction: ltr;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* QUL Style Mushaf Page */
+.mushaf-page {
+  background: #ffffff;
+  padding: 40px 20px;
+  margin: 0 auto;
+  position: relative;
+  min-height: 600px;
+  max-width: 900px;
+  direction: rtl;
+  border: none;
+  box-shadow: none;
+}
+
+/* QUL Line-based Layout */
+.mushaf-line {
+  width: 100%;
+  margin: 15px 0;
+  font-size: 30px;
+  line-height: 1.6;
+  direction: rtl;
+  text-align: center;
+  font-family: 'Amiri Quran', 'Scheherazade New', serif;
+}
+
+.mushaf-line.surah-name {
+  font-size: 28px;
+  color: #000000;
+  margin: 25px 0;
+  font-weight: 600;
+  border-bottom: 2px solid #000000;
+  padding-bottom: 10px;
+}
+
+.mushaf-line.basmallah {
+  font-size: 26px;
+  color: #000000;
+  margin: 20px 0;
+  font-style: italic;
+}
+
+.mushaf-line.centered {
+  text-align: center;
+}
+
+.line-content {
+  display: inline-block;
+}
+
+/* QUL Style - No decorative elements */
+.mushaf-page::before,
+.mushaf-page::after {
+  display: none;
+}
+
+/* Minimal center ornament */
+.center-ornament {
+  display: none;
+}
+
+/* QUL Style Page Header */
+.page-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  direction: rtl;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.page-number {
+  font-size: 1.2rem;
+  color: #495057;
+  font-weight: 500;
+  font-family: 'Noto Naskh Arabic', serif;
+}
+
+/* QUL Style Content Area */
+.page-content {
+  position: relative;
+  min-height: 500px;
+  background: transparent;
+  direction: rtl;
+  padding: 20px 0;
+}
+
+/* QUL Style Words */
+.mushaf-word {
+  position: absolute;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 30px;
+  font-weight: 400;
+  color: #000000;
+  font-family: 'Amiri Quran', 'Scheherazade New', serif;
+  line-height: 1.1;
+  direction: rtl;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mushaf-word:hover {
+  background: rgba(0, 123, 255, 0.1);
+  transform: none;
+  box-shadow: none;
+  z-index: 10;
+}
+
+.mushaf-word.highlighted {
+  background: rgba(255, 193, 7, 0.3);
+  z-index: 15;
+}
+
+.mushaf-word.selected {
+  background: rgba(0, 123, 255, 0.2);
+  z-index: 12;
+}
+
+/* Remove pulse animation for QUL style */
+
+/* QUL Style Page Statistics */
+.page-stats {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 12px;
+  color: #6c757d;
+  border-top: 1px solid #e9ecef;
+  padding-top: 15px;
+  font-family: 'Noto Naskh Arabic', serif;
+  direction: rtl;
+}
+
+/* QUL Style Navigation */
+.page-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+  direction: ltr;
+  font-family: 'Inter', sans-serif;
+  background: #f8f9fa;
+  padding: 15px;
+  border-top: 1px solid #e9ecef;
+}
+
+.navigation-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: #ffffff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+}
+
+/* QUL Style Buttons */
+.btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+
+.btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: #6c757d;
+}
+
+.btn-secondary:hover {
+  background: #545b62;
+}
+
+/* QUL Style Input Fields */
+.input {
+  padding: 6px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #ffffff;
+  color: #495057;
+  font-family: 'Inter', sans-serif;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* QUL Style Search Container */
+.search-container {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  direction: ltr;
+}
+
+.search-input {
+  min-width: 300px;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #ffffff;
+  font-family: 'Inter', sans-serif;
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid #d4af37;
+  border-radius: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  margin-top: 5px;
+}
+
+.search-result-item {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-result-item:hover {
+  background-color: rgba(212, 175, 55, 0.1);
+}
+
+/* QUL Style Word Info Panel */
+.word-info {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  direction: rtl;
+}
+
+.word-info h3 {
+  margin-bottom: 15px;
+  color: #495057;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 8px;
+  font-family: 'Noto Naskh Arabic', serif;
+}
+
+.word-info-content {
+  direction: rtl;
+  text-align: right;
+}
+
+.word-info .arabic-word {
+  font-size: 2rem;
+  color: #000000;
+  margin-bottom: 15px;
+  font-family: 'Amiri Quran', serif;
+  text-align: center;
+  direction: rtl;
+}
+
+.word-info p {
+  margin: 8px 0;
+  color: #6c757d;
+  font-size: 0.9rem;
+  font-family: 'Noto Naskh Arabic', serif;
+}
+
+/* Audio Player - Elegant Design */
+.audio-controls {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px 20px;
+  border-radius: 12px;
+  border: 2px solid #d4af37;
+  margin: 20px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  direction: ltr;
+  font-family: 'Inter', sans-serif;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(212, 175, 55, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #d4af37, #b8860b);
+  transition: width 0.1s ease;
+  border-radius: 3px;
+}
+
+.time-display {
+  font-size: 14px;
+  color: #8b4513;
+  font-weight: 500;
+  min-width: 100px;
+  text-align: center;
+}
+
+/* Loading and Error States */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 1.2rem;
+  color: #8b4513;
+  font-family: 'Noto Naskh Arabic', serif;
+  direction: rtl;
+}
+
+.error {
+  background: linear-gradient(135deg, #fef2f2, #fecaca);
+  color: #dc2626;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 2px solid #fca5a5;
+  text-align: center;
+  font-family: 'Noto Naskh Arabic', serif;
+  direction: rtl;
+}
+
+/* Search Results Summary */
+.search-results-summary {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #d4af37;
+  direction: rtl;
+}
+
+.search-results-summary h3 {
+  color: #8b4513;
+  margin-bottom: 15px;
+  font-family: 'Noto Naskh Arabic', serif;
+}
+
+/* Footer */
+.mushaf-footer {
+  text-align: center;
+  margin-top: 50px;
+  padding: 30px 20px;
+  color: #8b4513;
+  border-top: 2px solid #d4af37;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  font-family: 'Noto Naskh Arabic', serif;
+  direction: rtl;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mushaf-page {
+    padding: 40px 30px;
+    margin: 20px 10px;
+  }
+  
+  .mushaf-word {
+    font-size: 20px;
+  }
+  
+  .controls-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .page-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
