@@ -45,7 +45,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearchResult, onAyahNavigation 
       <input
         type="text"
         className="search-input"
-        placeholder="ابحث في النص القرآني أو الترجمة أو النطق..."
+        placeholder="Search in Quranic text, translation, or transliteration..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyPress={handleKeyPress}
@@ -55,7 +55,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearchResult, onAyahNavigation 
         onClick={handleSearch}
         disabled={isSearching || !query.trim()}
       >
-        {isSearching ? 'جاري البحث...' : 'بحث'}
+        {isSearching ? 'Searching...' : 'Search'}
       </button>
       
       {showResults && searchResults.length > 0 && (
@@ -79,8 +79,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearchResult, onAyahNavigation 
               style={{
                 padding: '10px',
                 borderBottom: '1px solid #f1f1f1',
-                cursor: 'pointer',
-                '&:hover': { backgroundColor: '#f8f9fa' }
+                cursor: 'pointer'
               }}
               onClick={() => handleResultClick(result)}
               onMouseEnter={(e) => {
@@ -111,7 +110,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({ onSearchResult, onAyahNavigation 
           onClick={() => setShowResults(false)}
           style={{ marginLeft: '10px' }}
         >
-          إغلاق
+          Close
         </button>
       )}
     </div>

@@ -44,11 +44,11 @@ const Navigation: React.FC<NavigationProps> = ({
         onClick={() => onPageChange(currentPage - 1)}
         disabled={!canGoPrevious}
       >
-        ← السابقة
+        ← Previous
       </button>
       
       <form onSubmit={handlePageSubmit} className="navigation-form">
-        <span>صفحة</span>
+        <span>Page</span>
         <input
           type="number"
           min="1"
@@ -58,9 +58,9 @@ const Navigation: React.FC<NavigationProps> = ({
           className="input"
           style={{ width: '60px' }}
         />
-        <span>من {totalPages}</span>
+        <span>of {totalPages}</span>
         <button type="submit" className="btn btn-secondary" style={{ padding: '8px 15px' }}>
-          اذهب
+          Go
         </button>
       </form>
       
@@ -69,13 +69,13 @@ const Navigation: React.FC<NavigationProps> = ({
         onClick={() => onPageChange(currentPage + 1)}
         disabled={!canGoNext}
       >
-        التالية →
+        Next →
       </button>
       
       <div style={{ margin: '0 20px', borderLeft: '2px solid #d4af37', height: '30px' }} />
       
       <form onSubmit={handleAyahSubmit} className="navigation-form">
-        <span>اذهب إلى سورة</span>
+        <span>Go to Surah</span>
         <input
           type="number"
           min="1"
@@ -85,7 +85,7 @@ const Navigation: React.FC<NavigationProps> = ({
           className="input"
           style={{ width: '50px' }}
         />
-        <span>آية</span>
+        <span>Ayah</span>
         <input
           type="number"
           min="1"
@@ -95,7 +95,7 @@ const Navigation: React.FC<NavigationProps> = ({
           style={{ width: '50px' }}
         />
         <button type="submit" className="btn btn-secondary" style={{ padding: '8px 15px' }}>
-          اذهب إلى الآية
+          Go to Ayah
         </button>
       </form>
     </div>

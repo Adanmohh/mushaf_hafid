@@ -1,184 +1,197 @@
-import React, { useState } from 'react';
-import { useMushaf } from './hooks/useMushaf';
-import { useAudio } from './hooks/useAudio';
+import React, { useState, useEffect } from 'react';
+import { mushafApi } from './services/api';
+import { QulPageResponse, QulWord, SurahInfo } from './types';
 import MushafPage from './components/MushafPage';
-import AudioPlayer from './components/AudioPlayer';
+import Navigation from './components/Navigation';
 import SearchBox from './components/SearchBox';
 import WordInfo from './components/WordInfo';
-import Navigation from './components/Navigation';
-import { QulWord, SearchResult } from './types';
+import './index.css';
 
-const App: React.FC = () => {
-  const {
-    layouts,
-    currentPage,
-    currentPageNumber,
-    loading,
-    error,
-    selectedWord,
-    setSelectedWord,
-    goToPage,
-    nextPage,
-    previousPage,
-    goToAyah
-  } = useMushaf(1, 1);
+function App() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(604); // Standard Mushaf page count
+  const [pageData, setPageData] = useState<QulPageResponse | null>(null);
+  const [selectedWord, setSelectedWord] = useState<QulWord | null>(null);
+  const [highlightedWordId, setHighlightedWordId] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [surahs, setSurahs] = useState<SurahInfo[]>([]);
 
-  const {
-    isPlaying,
-    currentTime,
-    duration,
-    highlightedWordId,
-    audioRef,
-    loadAyahAudio,
-    togglePlayPause,
-    seekTo,
-    playWord
-  } = useAudio();
+  // Load initial data
+  useEffect(() => {
+    loadInitialData();
+  }, []);
 
-  const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  // Load page when currentPage changes
+  useEffect(() => {
+    loadPage(currentPage);
+  }, [currentPage]);
+
+  const loadInitialData = async () => {
+    try {
+      // Load available layouts and surahs
+      const [layoutsResponse, surahsResponse] = await Promise.all([
+        mushafApi.getLayouts(),
+        mushafApi.getSurahNames()
+      ]);
+
+      setSurahs(surahsResponse.surahs);
+
+      // Update total pages if available from layouts
+      if (layoutsResponse.layouts.length > 0) {
+        setTotalPages(layoutsResponse.layouts[0].total_pages);
+      }
+    } catch (err) {
+      console.error('Error loading initial data:', err);
+      setError('Failed to load initial data');
+    }
+  };
+
+  const loadPage = async (pageNumber: number) => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const data = await mushafApi.getPage(pageNumber);
+      setPageData(data);
+    } catch (err) {
+      console.error('Error loading page:', err);
+      setError(`Failed to load page ${pageNumber}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      setSelectedWord(null);
+      setHighlightedWordId(null);
+    }
+  };
+
+  const handleAyahNavigation = async (surah: number, ayah: number) => {
+    try {
+      setLoading(true);
+      const result = await mushafApi.findAyahPage(surah, ayah);
+      setCurrentPage(result.page_number);
+    } catch (err) {
+      console.error('Error navigating to ayah:', err);
+      setError(`Failed to navigate to Surah ${surah}, Ayah ${ayah}`);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleWordClick = (word: QulWord) => {
     setSelectedWord(word);
+    setHighlightedWordId(word.word_id);
   };
 
   const handleWordDoubleClick = async (word: QulWord) => {
-    setSelectedWord(word);
-    // Note: QulWord doesn't have surah/ayah directly, would need to get from API
-    // For now, just set selected word
+    // Future: Load and play ayah audio
+    console.log('Double clicked word:', word);
   };
 
-  const handlePlayWord = (wordId: number) => {
-    playWord(wordId, 1);
+  const handlePlayWord = async (wordId: number) => {
+    try {
+      const audioData = await mushafApi.getWordAudio(wordId, 1);
+      console.log('Playing word audio:', audioData);
+      // Future: Implement actual audio playback
+    } catch (err) {
+      console.error('Error playing word audio:', err);
+    }
   };
 
-  const handleSearchResult = (results: SearchResult[]) => {
-    setSearchResults(results);
+  const handleSearchResult = (results: any[]) => {
+    // Future: Handle search result highlighting
+    console.log('Search results:', results);
   };
-
-  const handleAyahNavigation = (surah: number, ayah: number) => {
-    goToAyah(surah, ayah);
-  };
-
-  const currentLayout = layouts.find(l => l.id === 1);
-  const totalPages = currentLayout?.total_pages || 604;
 
   return (
-    <div className="mushaf-container">
-      <header className="mushaf-header">
-        <h1 className="mushaf-title">
-          مصحف حافظ - Mushaf Hafid
-        </h1>
-        <p className="mushaf-subtitle">
-          نسخة تفاعلية من المصحف الشريف
+    <div className="app">
+      <header className="app-header">
+        <h1 className="app-title">Mushaf Hafid - Interactive Quranic Mushaf</h1>
+        <p className="app-subtitle">
+          Word-level Interactive Quran with QUL Rendering • Page {currentPage} of {totalPages}
         </p>
       </header>
 
-      <div className="controls">
-        <div className="controls-content">
-          <SearchBox 
-            onSearchResult={handleSearchResult}
-            onAyahNavigation={handleAyahNavigation}
-          />
-          
-          <div style={{ marginLeft: 'auto', display: 'flex', gap: '10px' }}>
-            <button className="btn btn-secondary" onClick={previousPage}>
-              ← Previous
-            </button>
-            <button className="btn btn-secondary" onClick={nextPage}>
-              Next →
-            </button>
-          </div>
-        </div>
+      <div className="app-toolbar">
+        <Navigation
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          onAyahNavigation={handleAyahNavigation}
+        />
+        
+        <SearchBox
+          onSearchResult={handleSearchResult}
+          onAyahNavigation={handleAyahNavigation}
+        />
       </div>
 
-      <Navigation 
-        currentPage={currentPageNumber}
-        totalPages={totalPages}
-        onPageChange={goToPage}
-        onAyahNavigation={handleAyahNavigation}
-      />
-
-      <AudioPlayer 
-        isPlaying={isPlaying}
-        currentTime={currentTime}
-        duration={duration}
-        onTogglePlayPause={togglePlayPause}
-        onSeek={seekTo}
-        audioRef={audioRef}
-      />
-
-      {loading && (
-        <div className="loading">
-          Loading page {currentPageNumber}...
-        </div>
-      )}
-
       {error && (
-        <div className="error">
-          {error}
+        <div className="error-message">
+          <p>⚠️ {error}</p>
         </div>
       )}
 
-      {currentPage && !loading && (
-        <MushafPage 
-          page={currentPage}
-          selectedWord={selectedWord}
-          highlightedWordId={highlightedWordId}
-          onWordClick={handleWordClick}
-          onWordDoubleClick={handleWordDoubleClick}
-        />
-      )}
+      <div className="app-content">
+        <main className="main-content">
+          {loading ? (
+            <div className="loading">
+              <p>Loading page {currentPage}...</p>
+            </div>
+          ) : pageData ? (
+            <MushafPage
+              page={pageData}
+              selectedWord={selectedWord}
+              highlightedWordId={highlightedWordId}
+              onWordClick={handleWordClick}
+              onWordDoubleClick={handleWordDoubleClick}
+            />
+          ) : (
+            <div className="no-data">
+              <p>No page data available</p>
+            </div>
+          )}
+        </main>
 
-      <WordInfo 
-        word={selectedWord}
-        onPlayWord={handlePlayWord}
-      />
-
-      {searchResults.length > 0 && (
-        <div className="search-results-summary" style={{
-          background: 'white',
-          padding: '15px',
-          borderRadius: '8px',
-          marginTop: '20px',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
-        }}>
-          <h3>Search Results ({searchResults.length} found)</h3>
-          <div style={{ maxHeight: '200px', overflowY: 'auto' }}>
-            {searchResults.slice(0, 5).map((result, index) => (
-              <div key={index} style={{ 
-                padding: '8px 0', 
-                borderBottom: '1px solid #f1f1f1',
-                cursor: 'pointer'
-              }}
-              onClick={() => handleAyahNavigation(result.surah, result.ayah)}>
-                <div className="arabic-text">{result.text}</div>
-                <div style={{ fontSize: '14px', color: '#666' }}>
-                  {result.translation} - Surah {result.surah}:{result.ayah}
-                </div>
+        <aside className="sidebar">
+          <WordInfo
+            word={selectedWord}
+            onPlayWord={handlePlayWord}
+          />
+          
+          {surahs.length > 0 && (
+            <div className="surah-list">
+              <h3>Available Surahs</h3>
+              <div className="surah-list-content">
+                {surahs.slice(0, 10).map((surah) => (
+                  <button
+                    key={surah.surah_number}
+                    className="surah-button"
+                    onClick={() => handleAyahNavigation(surah.surah_number, 1)}
+                  >
+                    {surah.surah_number}. {surah.name_english}
+                  </button>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      )}
+            </div>
+          )}
+        </aside>
+      </div>
 
-      <footer style={{ 
-        textAlign: 'center', 
-        padding: '20px',
-        borderTop: '1px solid #e9ecef',
-        background: '#f8f9fa',
-        color: '#6c757d',
-        fontSize: '0.9rem'
-      }}>
+      <footer className="app-footer">
         <p>
-          التخطيط: {currentLayout?.name || 'جاري التحميل...'} | 
-          الصفحة: {currentPageNumber} من {totalPages}
-        </p>
-        <p style={{ fontSize: '0.8rem', marginTop: '5px', direction: 'ltr' }}>
-          Mushaf Hafid - Interactive Quranic Mushaf
+          Built with QUL Rendering Logic • 
+          Showing {pageData?.total_lines || 0} lines • 
+          {pageData ? pageData.lines.reduce((total, line) => total + line.words.length, 0) : 0} words
         </p>
       </footer>
     </div>
   );
-};
+}
 
 export default App;

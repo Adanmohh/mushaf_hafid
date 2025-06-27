@@ -46,7 +46,7 @@ const MushafPage: React.FC<MushafPageProps> = ({
   return (
     <div className="mushaf-page">
       <div className="page-header">
-        <h2 className="page-number">صفحة {page.page_number}</h2>
+        <h2 className="page-number">Page {page.page_number}</h2>
       </div>
       
       <div className="page-content">
@@ -81,8 +81,8 @@ const MushafPage: React.FC<MushafPageProps> = ({
       
       <div className="page-stats">
         <p>
-          الصفحة: {page.page_number} | الأسطر: {page.total_lines} | 
-          الكلمات: {page.lines.reduce((total, line) => total + line.words.length, 0)}
+          Page: {page.page_number} | Lines: {page.total_lines} | 
+          Words: {page.lines.reduce((total, line) => total + line.words.length, 0)}
         </p>
       </div>
     </div>

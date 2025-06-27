@@ -82,7 +82,7 @@ export interface QulWord {
 
 export interface QulLine {
   line_number: number;
-  line_type: 'ayah' | 'surah_name' | 'basmallah';
+  line_type: 'surah_name' | 'ayah' | 'basmallah';
   is_centered: boolean;
   content: string;
   words: QulWord[];
@@ -97,7 +97,7 @@ export interface QulPageResponse {
   lines: QulLine[];
 }
 
-export interface QulSurahInfo {
+export interface SurahInfo {
   surah_number: number;
   name_arabic: string;
   name_english: string;
@@ -106,5 +106,29 @@ export interface QulSurahInfo {
 
 export interface QulSurahNamesResponse {
   surah_names: Record<number, string>;
-  surahs: QulSurahInfo[];
+  surahs: SurahInfo[];
+}
+
+// QUL-compatible types following newinfo.md structure
+export interface QulLayoutInfo {
+  id: number;
+  name: string;
+  total_pages: number;
+  description: string;
+}
+
+// Audio types
+export interface Recitation {
+  id: number;
+  reciter_name: string;
+  style: string;
+}
+
+// Word details for info panel
+export interface WordDetails extends QulWord {
+  word_key: string;
+  surah: number;
+  ayah: number;
+  translation?: string;
+  transliteration?: string;
 }
