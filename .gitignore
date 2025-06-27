@@ -97,106 +97,21 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Coverage directory used by tools like istanbul
-coverage/
-*.lcov
-
-# nyc test coverage
-.nyc_output
-
-# Grunt intermediate storage
-.grunt
-
-# Bower dependency directory
-bower_components
-
-# node-waf configuration
-.lock-wscript
-
-# Compiled binary addons
-build/Release
-
-# Dependency directories
-jspm_packages/
-
-# TypeScript cache
-*.tsbuildinfo
-
-# Optional npm cache directory
 .npm
-
-# Optional eslint cache
 .eslintcache
-
-# Optional stylelint cache
-.stylelintcache
-
-# Microbundle cache
-.rpt2_cache/
-.rts2_cache_cjs/
-.rts2_cache_es/
-.rts2_cache_umd/
-
-# Optional REPL history
 .node_repl_history
-
-# Output of 'npm pack'
 *.tgz
-
-# Yarn Integrity file
+*.tar.gz
 .yarn-integrity
-
-# parcel-bundler cache
-.cache
-.parcel-cache
-
-# Next.js build output
 .next
-out
-
-# Nuxt.js build / generate output
+out/
+build/
 .nuxt
-dist
-
-# Gatsby files
+dist/
 .cache/
-public
+.parcel-cache/
 
-# Vite build output
-dist/
-dist-ssr/
-*.local
-
-# Rollup.js default build output
-dist/
-
-# Storybook build outputs
-.out
-.storybook-out
-storybook-static
-
-# Temporary folders
-tmp/
-temp/
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# OS
+# macOS
 .DS_Store
 .DS_Store?
 ._*
@@ -205,13 +120,30 @@ temp/
 ehthumbs.db
 Thumbs.db
 
+# Windows
+desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+
 # Logs
 logs
 *.log
 
-# Database files (except the ones in qul_resources which seem to be part of the app)
-*.db
-!qul_resources/**/*.db
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.#*
 
 # Backup files
 *.bak
@@ -221,4 +153,31 @@ logs
 *.zip
 *.tar.gz
 *.sql.zip
-*.sql.gz 
+*.sql.gz
+
+# QUL Resource large files (prevent GitHub size limit issues)
+*.ttf.bz2
+*.woff.bz2
+*.otf.bz2
+qul_guide/*.bz2
+qul_guide/*.zip
+qul_guide/*.tar.gz
+
+# Database backups and large SQL files
+*.sql.bak
+*.db.bak
+*.sqlite.bak
+
+# Audio files (can be large)
+*.mp3
+*.wav
+*.flac
+*.ogg
+*.m4a
+
+# Video files
+*.mp4
+*.avi
+*.mkv
+*.mov
+*.wmv 
