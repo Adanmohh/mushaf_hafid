@@ -32,79 +32,109 @@ export const mushafApi = {
     return response.data;
   },
 
-  async getSurahInfo(surahNumber: number): Promise<SurahInfo> {
-    const response = await api.get(`/qul/surah/${surahNumber}`);
-    return response.data;
-  },
-
-  async getAyahWords(surahNumber: number, ayahNumber: number): Promise<{
-    surah: number;
-    ayah: number;
-    words: WordDetails[];
+  async getAyah(surahNumber: number, ayahNumber: number): Promise<{
+    surah_number: number;
+    ayah_number: number;
     text: string;
+    words: Array<{ word_id: number; text: string }>;
+    page_number: number | null;
+    surah_name: string | null;
+    surah_arabic: string | null;
   }> {
     const response = await api.get(`/qul/ayah/${surahNumber}/${ayahNumber}`);
     return response.data;
   },
 
-  async getWordsRange(firstWordId: number, lastWordId: number): Promise<{
-    first_word_id: number;
-    last_word_id: number;
-    words: WordDetails[];
-    combined_text: string;
-  }> {
-    const response = await api.get(`/qul/words/${firstWordId}/${lastWordId}`);
-    return response.data;
-  },
-
-  // Search endpoints
   async search(query: string, limit: number = 20): Promise<{
-    query: string;
-    results_count: number;
     results: SearchResult[];
+    total_found: number;
+    query: string;
   }> {
     const response = await api.get('/qul/search', {
-      params: { q: query, limit }
+      params: { query, limit }
     });
     return response.data;
   },
 
-  // Navigation helpers
-  async findAyahPage(surahNumber: number, ayahNumber: number): Promise<{ page_number: number }> {
-    // This would need to be implemented in the backend
-    // For now, return page 1 for Al-Fatiha, page 2 for Al-Baqarah
-    if (surahNumber === 1) {
-      return { page_number: 1 };
-    } else if (surahNumber === 2) {
-      return { page_number: 2 };
-    }
-    return { page_number: 1 };
+  async getStats(): Promise<{
+    total_words: number;
+    total_pages: number;
+    total_surahs: number;
+    total_ayahs: number;
+    layout_name: string;
+    font_system: string;
+  }> {
+    const response = await api.get('/qul/stats');
+    return response.data;
   },
 
-  // Audio endpoints (for future implementation)
+  // Audio endpoints (legacy support)
   async getRecitations(): Promise<{ recitations: Recitation[] }> {
-    // Placeholder for audio functionality
-    return {
-      recitations: [
-        { id: 1, reciter_name: "Abdul Basit Abdul Samad", style: "Mujawwad" }
-      ]
-    };
+    try {
+      const response = await api.get('/audio/recitations');
+      return response.data;
+    } catch (error) {
+      console.warn('Audio recitations not available:', error);
+      return { recitations: [] };
+    }
   },
 
-  async getWordAudio(wordId: number, recitationId: number): Promise<{
+  async getWordAudio(wordId: number, recitationId: string = 'default'): Promise<{
     word_id: number;
     audio_url: string;
-    start_time: number;
-    end_time: number;
+    recitation_id: string;
   }> {
-    // Placeholder for audio functionality
-    return {
-      word_id: wordId,
-      audio_url: `/static/audio/word_${wordId}.mp3`,
-      start_time: 0,
-      end_time: 1000
-    };
+    try {
+      const response = await api.get(`/audio/word/${wordId}`, {
+        params: { recitation_id: recitationId }
+      });
+      return response.data;
+    } catch (error) {
+      console.warn(`Audio for word ${wordId} not available:`, error);
+      throw error;
+    }
+  },
+
+  async getPageAudio(pageNumber: number, recitationId: string = 'default'): Promise<{
+    page_number: number;
+    audio_segments: Array<{
+      word_id: number;
+      start_time: number;
+      end_time: number;
+      audio_url: string;
+    }>;
+    recitation_id: string;
+  }> {
+    try {
+      const response = await api.get(`/audio/page/${pageNumber}`, {
+        params: { recitation_id: recitationId }
+      });
+      return response.data;
+    } catch (error) {
+      console.warn(`Audio for page ${pageNumber} not available:`, error);
+      throw error;
+    }
+  },
+
+  // Font endpoint
+  async getPageFont(pageNumber: number): Promise<Blob> {
+    const response = await api.get(`/fonts/${pageNumber}`, {
+      responseType: 'blob'
+    });
+    return response.data;
+  },
+
+  // Health check
+  async healthCheck(): Promise<{
+    status: string;
+    qul_database: string;
+    fonts: string;
+    total_pages: number;
+    font_system: string;
+  }> {
+    const response = await api.get('/health');
+    return response.data;
   }
 };
 
-export default api;
+export default mushafApi;

@@ -6,7 +6,7 @@ Main application file with CORS configuration and route setup
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 import uvicorn
 import os
 
@@ -15,9 +15,9 @@ from app.database.connection import init_database
 
 # Create FastAPI instance
 app = FastAPI(
-    title="Quranic Mushaf API",
-    description="A comprehensive API for Quranic Mushaf view with word-level audio synchronization",
-    version="1.0.0",
+    title="Quranic Mushaf View API",
+    description="Complete Quran API with QUL rendering support and page-specific fonts",
+    version="2.0.0",
     docs_url="/docs",
     redoc_url="/redoc"
 )
@@ -49,17 +49,57 @@ async def startup_event():
 async def root():
     """Root endpoint with API information"""
     return {
-        "message": "Quranic Mushaf API",
-        "version": "1.0.0",
-        "description": "A comprehensive API for Quranic Mushaf view with word-level audio synchronization",
-        "docs": "/docs",
-        "redoc": "/redoc"
+        "message": "Quranic Mushaf View API",
+        "version": "2.0.0",
+        "features": [
+            "Complete Quran with 83,668 words",
+            "QUL rendering system with 604 pages",
+            "Page-specific WOFF fonts",
+            "Arabic/English UI support",
+            "Search functionality",
+            "Audio playback support"
+        ],
+        "endpoints": {
+            "qul": "/api/v1/qul/",
+            "mushaf": "/api/v1/mushaf/",
+            "audio": "/api/v1/audio/",
+            "search": "/api/v1/search/"
+        }
     }
 
-@app.get("/health")
+@app.get("/api/v1/health")
 async def health_check():
     """Health check endpoint"""
-    return {"status": "healthy", "message": "API is running"}
+    # Check if QUL database exists
+    qul_db_exists = os.path.exists("app/database/qul_complete.db")
+    
+    # Check if fonts directory exists
+    fonts_exist = os.path.exists("static/fonts") and len(os.listdir("static/fonts")) > 0
+    
+    return {
+        "status": "healthy",
+        "qul_database": "available" if qul_db_exists else "missing",
+        "fonts": "available" if fonts_exist else "missing",
+        "total_pages": 604,
+        "font_system": "page-specific"
+    }
+
+@app.get("/api/v1/fonts/{page_number}")
+async def get_page_font(page_number: int):
+    """Get page-specific font file"""
+    if page_number < 1 or page_number > 604:
+        raise HTTPException(status_code=400, detail="Page number must be between 1 and 604")
+    
+    font_file = f"static/fonts/p{page_number}.woff"
+    
+    if not os.path.exists(font_file):
+        raise HTTPException(status_code=404, detail=f"Font for page {page_number} not found")
+    
+    return FileResponse(
+        font_file,
+        media_type="font/woff",
+        headers={"Cache-Control": "public, max-age=31536000"}  # Cache for 1 year
+    )
 
 @app.exception_handler(404)
 async def not_found_handler(request, exc):

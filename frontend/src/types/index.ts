@@ -59,13 +59,14 @@ export interface AyahAudio {
 
 export interface SearchResult {
   word_id: number;
+  word_key: string;
   surah: number;
   ayah: number;
   text: string;
-  translation?: string;
-  transliteration?: string;
+  surah_name?: string;
+  surah_arabic?: string;
   page?: number;
-  line?: number;
+  translation?: string;
 }
 
 export interface SearchResponse {
@@ -95,13 +96,15 @@ export interface QulPageResponse {
   page_number: number;
   total_lines: number;
   lines: QulLine[];
+  font_file: string;
+  font_path: string;
 }
 
 export interface SurahInfo {
-  surah_number: number;
+  id: number;
+  name_simple: string;
   name_arabic: string;
-  name_english: string;
-  total_ayahs: number;
+  verses_count: number;
 }
 
 export interface QulSurahNamesResponse {
@@ -111,24 +114,33 @@ export interface QulSurahNamesResponse {
 
 // QUL-compatible types following newinfo.md structure
 export interface QulLayoutInfo {
-  id: number;
   name: string;
-  total_pages: number;
-  description: string;
+  number_of_pages: number;
+  lines_per_page: number;
+  font_name: string;
 }
 
 // Audio types
 export interface Recitation {
-  id: number;
-  reciter_name: string;
+  id: string;
+  name: string;
   style: string;
+  url_template: string;
 }
 
 // Word details for info panel
-export interface WordDetails extends QulWord {
-  word_key: string;
-  surah: number;
-  ayah: number;
-  translation?: string;
+export interface WordDetails {
+  word_id: number;
+  text: string;
   transliteration?: string;
+  translation?: string;
+  root?: string;
+  part_of_speech?: string;
+}
+
+export interface AudioSegment {
+  word_id: number;
+  start_time: number;
+  end_time: number;
+  audio_url: string;
 }
